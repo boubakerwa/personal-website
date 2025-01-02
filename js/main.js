@@ -62,6 +62,19 @@ const projects = [
         }
     },
     {
+        title: 'PhotoAI Clone',
+        description: 'A sophisticated web application that creates professional AI-generated headshots by learning from multiple user photos. Features real-time progress tracking, camera integration, and drag-and-drop file handling. Uses Replicate\'s API to fine-tune Stability AI SDXL model for personalized headshot generation.',
+        image: 'assets/projects/photoai-clone.png',
+        technologies: ['React', 'TypeScript', 'Express.js', 'TailwindCSS', 'Replicate API', 'Stability AI'],
+        status: 'active',
+        isPublic: false,
+        labels: ['Private Beta', 'Looking for Testers'],
+        links: {
+            demo: '#',
+            github: '#'
+        }
+    },
+    {
         title: 'Personal Website',
         description: 'A modern, responsive personal website built with modular CSS architecture and vanilla JavaScript. Features include dark mode, interactive gallery, and dynamic content loading.',
         image: 'assets/projects/personal-website.jpg',
@@ -121,11 +134,46 @@ function populateBlogPosts() {
 
 // Populate projects
 function populateProjects() {
+    const featuredProject = document.querySelector('.featured-project');
     const projectsGrid = document.querySelector('.projects-grid');
-    if (!projectsGrid) return;
+    const prevButton = document.querySelector('.carousel-prev');
+    const nextButton = document.querySelector('.carousel-next');
+    
+    if (!projectsGrid || !featuredProject) return;
 
-    projectsGrid.innerHTML = projects.map(project => `
-        <article class="project-card ${project === projects[0] ? 'featured' : ''}">
+    // Render featured project (VirtualPO)
+    featuredProject.innerHTML = `
+        <article class="project-card">
+            <img src="${projects[0].image}" alt="${projects[0].title}" class="project-image">
+            <div class="project-content">
+                <h3 class="project-title">${projects[0].title}</h3>
+                <p class="project-description">${projects[0].description}</p>
+                <div class="project-tech">
+                    ${projects[0].technologies.map(tech => `
+                        <span class="tech-tag">${tech}</span>
+                    `).join('')}
+                </div>
+                <div class="project-links">
+                    <a href="${projects[0].links.demo}" class="project-link" target="_blank">Live Demo</a>
+                    <a href="${projects[0].links.github}" class="project-link" target="_blank">
+                        GitHub ${projects[0].isPublic ? '🔓' : '🔒'}
+                    </a>
+                </div>
+                <div class="project-footer">
+                    <span class="project-status status-${projects[0].status}">${projects[0].status}</span>
+                    <div class="project-labels">
+                        ${projects[0].labels ? projects[0].labels.map(label => `
+                            <span class="project-label">${label}</span>
+                        `).join('') : ''}
+                    </div>
+                </div>
+            </div>
+        </article>
+    `;
+
+    // Render remaining projects in carousel (excluding VirtualPO)
+    projectsGrid.innerHTML = projects.filter(project => project.title !== 'VirtualPO').map(project => `
+        <article class="project-card">
             <img src="${project.image}" alt="${project.title}" class="project-image">
             <div class="project-content">
                 <h3 class="project-title">${project.title}</h3>
@@ -152,6 +200,36 @@ function populateProjects() {
             </div>
         </article>
     `).join('');
+
+    // Handle carousel navigation
+    prevButton.addEventListener('click', () => {
+        projectsGrid.scrollBy({
+            left: -420,
+            behavior: 'smooth'
+        });
+    });
+
+    nextButton.addEventListener('click', () => {
+        projectsGrid.scrollBy({
+            left: 420,
+            behavior: 'smooth'
+        });
+    });
+
+    // Show/hide navigation buttons based on scroll position
+    projectsGrid.addEventListener('scroll', () => {
+        const isAtStart = projectsGrid.scrollLeft === 0;
+        const isAtEnd = projectsGrid.scrollLeft + projectsGrid.clientWidth >= projectsGrid.scrollWidth - 1;
+        
+        prevButton.style.opacity = isAtStart ? '0.3' : '1';
+        prevButton.style.pointerEvents = isAtStart ? 'none' : 'auto';
+        
+        nextButton.style.opacity = isAtEnd ? '0.3' : '1';
+        nextButton.style.pointerEvents = isAtEnd ? 'none' : 'auto';
+    });
+
+    // Trigger initial scroll check
+    projectsGrid.dispatchEvent(new Event('scroll'));
 }
 
 // Populate news items
