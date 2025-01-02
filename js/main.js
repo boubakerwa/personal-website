@@ -20,6 +20,17 @@ const blogPosts = [
 
 const projects = [
     {
+        title: 'Personal Website',
+        description: 'A modern, responsive personal website built with modular CSS architecture and vanilla JavaScript. Features include dark mode, interactive gallery, and dynamic content loading.',
+        image: 'assets/projects/personal-website.jpg',
+        technologies: ['HTML5', 'CSS3', 'JavaScript'],
+        status: 'active',
+        links: {
+            demo: 'https://boubakerwa.github.io/personal-website',
+            github: 'https://github.com/boubakerwa/personal-website'
+        }
+    },
+    {
         title: 'AI-Powered Content Generator',
         description: 'A machine learning system that generates creative content while maintaining brand consistency.',
         image: 'assets/projects/ai-content.jpg',
