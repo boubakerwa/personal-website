@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/components/news.css">
     <link rel="stylesheet" href="css/components/contact.css">
     <link rel="stylesheet" href="css/components/modal.css">
+    <link rel="stylesheet" href="css/components/albums.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -56,7 +57,27 @@
             </div>
         </section>
 
-    <section id="gallery" class="gallery">
+        <section id="albums" class="albums">
+            <div class="container">
+                <h2>Photo Albums</h2>
+                <div class="albums-container">
+                    <button class="carousel-nav carousel-prev" aria-label="Previous album">←</button>
+                    <div class="albums-grid">
+                        <!-- Albums will be dynamically populated -->
+                    </div>
+                    <button class="carousel-nav carousel-next" aria-label="Next album">→</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Album Modal -->
+        <div class="album-modal">
+            <div class="album-modal-content">
+                <!-- Album content will be dynamically populated -->
+            </div>
+        </div>
+
+        <section id="gallery" class="gallery">
         <div class="container">
             <h2>Photo Gallery</h2>
             <div class="gallery-grid">
@@ -296,5 +317,6 @@
 
     <script src="js/animations.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/albums.js"></script>
 </body>
 </html>
