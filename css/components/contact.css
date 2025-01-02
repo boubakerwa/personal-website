@@ -1,0 +1,210 @@
+.footer {
+    background-color: var(--background-secondary);
+    padding: var(--spacing-3xl) 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-section {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-section h2 {
+    margin-bottom: var(--spacing-xl);
+    background: linear-gradient(
+        135deg,
+        var(--primary-color),
+        var(--accent-color)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Contact button */
+.contact-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md) var(--spacing-xl);
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: var(--border-radius-lg);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    transition: all var(--transition-normal);
+    margin-bottom: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+}
+
+.contact-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Social links */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--background-primary);
+    color: var(--text-primary);
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-sm);
+}
+
+.social-link:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Decorative background */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--primary-color),
+        transparent
+    );
+}
+
+.footer-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.footer-shape {
+    position: absolute;
+    background: var(--primary-color);
+    opacity: 0.05;
+    border-radius: 50%;
+}
+
+.footer-shape:nth-child(1) {
+    width: 400px;
+    height: 400px;
+    top: -200px;
+    left: -200px;
+}
+
+.footer-shape:nth-child(2) {
+    width: 300px;
+    height: 300px;
+    bottom: -150px;
+    right: -150px;
+    background: var(--accent-color);
+}
+
+/* Newsletter form */
+.newsletter-form {
+    max-width: 400px;
+    margin: var(--spacing-xl) auto 0;
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.newsletter-input {
+    flex: 1;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--background-accent);
+    border-radius: var(--border-radius-md);
+    background-color: var(--background-primary);
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+    transition: all var(--transition-fast);
+}
+
+.newsletter-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.newsletter-button {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.newsletter-button:hover {
+    background-color: var(--primary-dark);
+}
+
+/* Copyright section */
+.copyright {
+    text-align: center;
+    color: var(--text-light);
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--background-accent);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 0 var(--spacing-lg);
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+        padding: 0 var(--spacing-lg);
+    }
+
+    .social-links {
+        gap: var(--spacing-md);
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    .social-link {
+        background-color: var(--background-secondary);
+    }
+
+    .newsletter-input {
+        background-color: var(--background-secondary);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-shape {
+        opacity: 0.1;
+    }
+}
