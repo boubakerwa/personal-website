@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post | Wassim Boubaker</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components/header.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components/blog-post.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">Wassim Boubaker</div>
+            <ul class="nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#blog">Blog</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#background">Background</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="blog-post">
+        <div class="container">
+            <article class="post-content">
+                <header class="post-header">
+                    <div class="post-meta">
+                        <time datetime="2024-01-15">January 15, 2024</time>
+                        <span class="post-category">AI & Technology</span>
+                        <span class="post-read-time">5 min read</span>
+                    </div>
+                    <h1 class="post-title">The Future of AI in Creative Industries</h1>
+                    <div class="post-tags">
+                        <span class="post-tag">AI</span>
+                        <span class="post-tag">Creativity</span>
+                        <span class="post-tag">Innovation</span>
+                    </div>
+                </header>
+
+                <div class="post-body" id="postContent">
+                    <!-- Content will be loaded dynamically -->
+                </div>
+
+                <div class="post-actions">
+                    <button class="like-button" id="likeButton">
+                        <span class="like-icon">❤️</span>
+                        <span class="like-count">0</span>
+                    </button>
+                    <button class="feedback-button" id="feedbackButton">
+                        Give Feedback
+                    </button>
+                </div>
+
+                <div class="post-author">
+                    <img src="assets/profile.jpg" alt="Wassim Boubaker" class="author-image">
+                    <div class="author-info">
+                        <h3>Written by Wassim Boubaker</h3>
+                        <p>Technical Lead & ML Engineer passionate about AI, creativity, and innovation.</p>
+                    </div>
+                </div>
+
+                <div class="post-newsletter">
+                    <h3>Stay Updated</h3>
+                    <p>Get notified about new articles and resources</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="button-primary">Subscribe</button>
+                    </form>
+                </div>
+            </article>
+
+            <section class="comments-section">
+                <h2>Comments</h2>
+                <form class="comment-form" id="commentForm">
+                    <textarea placeholder="Share your thoughts..." required></textarea>
+                    <button type="submit" class="button-primary">Post Comment</button>
+                </form>
+                <div class="comments-list" id="commentsList">
+                    <!-- Comments will be added dynamically -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="feedback-modal" id="feedbackModal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h3>Share Your Feedback</h3>
+            <p>Select text in the article to provide specific feedback, or leave general comments below.</p>
+            <form id="feedbackForm">
+                <textarea placeholder="Your feedback..." required></textarea>
+                <div class="feedback-type">
+                    <label>
+                        <input type="radio" name="feedbackType" value="suggestion" checked>
+                        Suggestion
+                    </label>
+                    <label>
+                        <input type="radio" name="feedbackType" value="correction">
+                        Correction
+                    </label>
+                    <label>
+                        <input type="radio" name="feedbackType" value="question">
+                        Question
+                    </label>
+                </div>
+                <button type="submit" class="button-primary">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/blog-post.js"></script>
+</body>
+</html>

@@ -3,7 +3,7 @@ const blogPosts = [
     {
         title: 'The Future of AI in Creative Industries',
         excerpt: 'As artificial intelligence continues to evolve, its impact on creative workflows is becoming increasingly significant. From generative art to adaptive music composition, AI is not just automating tasks but enabling entirely new forms of creative expression.',
-        image: 'assets/blog/ai-creativity.jpg',
+        image: 'assets/blog/ai-creativity.webp',
         date: '2024-01-15',
         category: 'AI & Technology',
         tags: ['AI', 'Creativity', 'Innovation'],
@@ -111,7 +111,7 @@ function populateBlogPosts() {
                         <span class="blog-card-read-time">${post.readTime}</span>
                     </div>
                     ${post.url ? `
-                        <a href="${post.url}" class="blog-card-link">Read More →</a>
+                        <a href="blog-template.html?post=${encodeURIComponent(post.url)}" class="blog-card-link">Read More →</a>
                     ` : ''}
                 </div>
             </div>
