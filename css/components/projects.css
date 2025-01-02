@@ -127,22 +127,26 @@
 }
 
 /* Project status badge */
-.project-footer {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-    margin-top: var(--spacing-md);
-}
-
 .project-status {
-    display: inline-flex;
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
     padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: var(--border-radius-sm);
     font-size: var(--font-size-xs);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    align-self: flex-start;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    z-index: 1;
+}
+
+.project-footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
 }
 
 .project-labels {

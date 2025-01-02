@@ -12,13 +12,7 @@
 <body>
     <header class="header">
         <nav class="nav-container">
-            <div class="logo">Wassim Boubaker</div>
-            <ul class="nav-links">
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#blog">Blog</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="index.html#background">Background</a></li>
-            </ul>
+            <a href="index.html" class="logo">Wassim Boubaker</a>
         </nav>
     </header>
 
@@ -84,30 +78,12 @@
         </div>
     </main>
 
-    <div class="feedback-modal" id="feedbackModal">
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <h3>Share Your Feedback</h3>
-            <p>Select text in the article to provide specific feedback, or leave general comments below.</p>
-            <form id="feedbackForm">
-                <textarea placeholder="Your feedback..." required></textarea>
-                <div class="feedback-type">
-                    <label>
-                        <input type="radio" name="feedbackType" value="suggestion" checked>
-                        Suggestion
-                    </label>
-                    <label>
-                        <input type="radio" name="feedbackType" value="correction">
-                        Correction
-                    </label>
-                    <label>
-                        <input type="radio" name="feedbackType" value="question">
-                        Question
-                    </label>
-                </div>
-                <button type="submit" class="button-primary">Submit Feedback</button>
-            </form>
-        </div>
+    <div class="feedback-bar" id="feedbackBar">
+        <button class="feedback-toggle" id="feedbackToggle">✨</button>
+        <form id="feedbackForm" class="feedback-form">
+            <textarea placeholder="Your feedback..." required></textarea>
+            <button type="submit" class="feedback-submit">Send</button>
+        </form>
     </div>
 
     <script src="js/blog-post.js"></script>

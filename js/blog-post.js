@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load blog content
     loadBlogContent();
     setupLikeButton();
-    setupFeedbackModal();
+    setupFeedbackBar();
     setupComments();
     setupTextSelection();
 });
@@ -65,102 +65,6 @@ function updatePageMetadata(markdown) {
     }
 }
 
-function markdownToHtml(markdown) {
-    return markdown
-        .replace(/^# (.*$)/gm, '<h1>$1</h1>')
-        .replace(/^## (.*$)/gm, '<h2>$1</h2>')
-        .replace(/^### (.*$)/gm, '<h3>$1</h3>')
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        .replace(/^\- (.*$)/gm, '<li>$1</li>')
-        .replace(/^\d\. (.*$)/gm, '<li>$1</li>')
-        .replace(/<\/li>\n<li>/g, '</li><li>')
-        .replace(/^\n\n/gm, '</p><p>')
-        .replace(/^(?!<[h|p|l])/gm, '<p>$&');
-}
-
-function setupLikeButton() {
-    const likeButton = document.getElementById('likeButton');
-    const likeCount = likeButton.querySelector('.like-count');
-    let likes = parseInt(localStorage.getItem('blogLikes') || '0');
-    let isLiked = localStorage.getItem('blogLiked') === 'true';
-
-    updateLikeButton();
-
-    likeButton.addEventListener('click', () => {
-        isLiked = !isLiked;
-        likes = isLiked ? likes + 1 : likes - 1;
-        localStorage.setItem('blogLiked', isLiked);
-        localStorage.setItem('blogLikes', likes);
-        updateLikeButton();
-    });
-
-    function updateLikeButton() {
-        likeCount.textContent = likes;
-        likeButton.classList.toggle('active', isLiked);
-    }
-}
-
-function setupFeedbackModal() {
-    const modal = document.getElementById('feedbackModal');
-    const openButton = document.getElementById('feedbackButton');
-    const closeButton = modal.querySelector('.modal-close');
-    const form = document.getElementById('feedbackForm');
-    let selectedText = '';
-
-    openButton.addEventListener('click', () => {
-        modal.classList.add('active');
-    });
-
-    closeButton.addEventListener('click', () => {
-        modal.classList.remove('active');
-        form.reset();
-    });
-
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('active');
-            form.reset();
-        }
-    });
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const feedback = {
-            text: form.querySelector('textarea').value,
-            type: form.querySelector('input[name="feedbackType"]:checked').value,
-            selection: selectedText
-        };
-        console.log('Feedback submitted:', feedback);
-        alert('Thank you for your feedback!');
-        modal.classList.remove('active');
-        form.reset();
-    });
-}
-
-function setupTextSelection() {
-    const postContent = document.getElementById('postContent');
-    const modal = document.getElementById('feedbackModal');
-    
-    postContent.addEventListener('mouseup', () => {
-        const selection = window.getSelection();
-        const selectedText = selection.toString().trim();
-        
-        if (selectedText) {
-            const feedback = document.getElementById('feedbackForm');
-            if (feedback) {
-                feedback.querySelector('textarea').value = `Regarding "${selectedText}":\n`;
-                modal.classList.add('active');
-            }
-        }
-    });
-
-    // Don't show feedback modal when selecting text in the modal itself
-    modal.addEventListener('mouseup', (e) => {
-        e.stopPropagation();
-    });
-}
-
 // Enhance markdown to HTML conversion
 function markdownToHtml(markdown) {
     // First, handle headers with proper hierarchy
@@ -192,6 +96,98 @@ function markdownToHtml(markdown) {
         .replace(/<p>\s*<\/p>/g, '');
 
     return html;
+}
+
+function setupLikeButton() {
+    const likeButton = document.getElementById('likeButton');
+    const likeCount = likeButton.querySelector('.like-count');
+    let likes = parseInt(localStorage.getItem('blogLikes') || '0');
+    let isLiked = localStorage.getItem('blogLiked') === 'true';
+
+    updateLikeButton();
+
+    likeButton.addEventListener('click', () => {
+        isLiked = !isLiked;
+        likes = isLiked ? likes + 1 : likes - 1;
+        localStorage.setItem('blogLiked', isLiked);
+        localStorage.setItem('blogLikes', likes);
+        updateLikeButton();
+    });
+
+    function updateLikeButton() {
+        likeCount.textContent = likes;
+        likeButton.classList.toggle('active', isLiked);
+    }
+}
+
+function setupFeedbackBar() {
+    const feedbackBar = document.getElementById('feedbackBar');
+    const toggleButton = document.getElementById('feedbackToggle');
+    const form = document.getElementById('feedbackForm');
+    let selectedText = '';
+
+    toggleButton.addEventListener('click', () => {
+        form.classList.toggle('active');
+    });
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const feedback = {
+            text: form.querySelector('textarea').value,
+            selection: selectedText
+        };
+        console.log('Feedback submitted:', feedback);
+        alert('Thank you for your feedback!');
+        form.classList.remove('active');
+        form.reset();
+    });
+
+    // Close feedback form when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!feedbackBar.contains(e.target)) {
+            form.classList.remove('active');
+        }
+    });
+}
+
+function setupTextSelection() {
+    const postContent = document.getElementById('postContent');
+    const feedbackBar = document.getElementById('feedbackBar');
+    const feedbackForm = document.getElementById('feedbackForm');
+    let selectedText = '';
+    
+    document.addEventListener('mouseup', () => {
+        const selection = window.getSelection();
+        selectedText = selection.toString().trim();
+        
+        if (selectedText && selection.anchorNode?.parentElement?.closest('.post-body')) {
+            const range = selection.getRangeAt(0);
+            const rect = range.getBoundingClientRect();
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            const postContent = document.querySelector('.post-content');
+            const postRect = postContent.getBoundingClientRect();
+            const relativeLeft = rect.left - postRect.left + rect.width;
+            const relativeTop = rect.top - postRect.top + rect.height;
+            
+            feedbackBar.style.left = `${relativeLeft - 16}px`;
+            feedbackBar.style.top = `${relativeTop - 16}px`;
+            feedbackBar.style.transform = 'none';
+            feedbackBar.classList.add('active');
+            feedbackForm.querySelector('textarea').value = `Regarding "${selectedText}":\n`;
+        } else {
+            feedbackBar.classList.remove('active');
+            if (!feedbackForm.classList.contains('active')) {
+                feedbackForm.querySelector('textarea').value = '';
+            }
+        }
+    });
+
+
+    // Don't hide feedback bar when interacting with the form
+    feedbackForm.addEventListener('mouseup', (e) => {
+        e.stopPropagation();
+    });
 }
 
 function setupComments() {
