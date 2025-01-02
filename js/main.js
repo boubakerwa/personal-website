@@ -25,6 +25,7 @@ const projects = [
         image: 'assets/projects/personal-website.jpg',
         technologies: ['HTML5', 'CSS3', 'JavaScript'],
         status: 'active',
+        isPublic: true,
         links: {
             demo: 'https://boubakerwa.github.io/personal-website',
             github: 'https://github.com/boubakerwa/personal-website'
@@ -36,6 +37,7 @@ const projects = [
         image: 'assets/projects/ai-content.jpg',
         technologies: ['Python', 'TensorFlow', 'React'],
         status: 'active',
+        isPublic: false,
         links: {
             demo: 'https://demo.example.com',
             github: 'https://github.com/example'
@@ -47,6 +49,7 @@ const projects = [
         image: 'assets/projects/dashboard.jpg',
         technologies: ['Vue.js', 'Node.js', 'D3.js'],
         status: 'completed',
+        isPublic: false,
         links: {
             demo: 'https://demo.example.com',
             github: 'https://github.com/example'
@@ -110,7 +113,9 @@ function populateProjects() {
                 </div>
                 <div class="project-links">
                     <a href="${project.links.demo}" class="project-link" target="_blank">Live Demo</a>
-                    <a href="${project.links.github}" class="project-link" target="_blank">GitHub</a>
+                    <a href="${project.links.github}" class="project-link" target="_blank">
+                        GitHub ${project.isPublic ? '🔓' : '🔒'}
+                    </a>
                 </div>
                 <span class="project-status status-${project.status}">${project.status}</span>
             </div>
