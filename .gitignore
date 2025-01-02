@@ -67,6 +67,7 @@ Desktop.ini
 # custom
 prompt.txt
 persona.txt
+assets/albums/*
 
 # Optional: Uncomment if using these tools
 # .sass-cache/

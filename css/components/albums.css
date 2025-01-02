@@ -107,9 +107,16 @@
     gap: var(--spacing-md);
     font-size: var(--font-size-sm);
     opacity: 0.9;
+    color: white;
 }
 
-/* Album Gallery Modal */
+.album-location {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+
 .album-modal {
     position: fixed;
     top: 0;
@@ -117,15 +124,21 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.95);
-    z-index: 1000;
-    display: none;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
     opacity: 0;
-    transition: opacity var(--transition-normal);
+    transition: visibility 0s linear 0.3s, opacity 0.3s linear;
+    pointer-events: none;
 }
 
 .album-modal.active {
-    display: flex;
+    visibility: visible;
     opacity: 1;
+    transition-delay: 0s;
+    pointer-events: all;
 }
 
 .album-modal-content {
@@ -134,18 +147,39 @@
     display: flex;
     flex-direction: column;
     padding: var(--spacing-xl);
+    position: relative;
+    z-index: 10000;
 }
 
 .album-modal-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    color: white;
+    align-items: flex-start;
+    padding: var(--spacing-lg);
+    background-color: rgba(0, 0, 0, 0.8);
     margin-bottom: var(--spacing-xl);
 }
 
 .album-modal-title {
+    color: white;
     font-size: var(--font-size-2xl);
+    margin: 0 0 var(--spacing-sm) 0;
+}
+
+.album-modal-subtitle {
+    color: white;
+    font-size: var(--font-size-md);
+    margin: 0 0 var(--spacing-sm) 0;
+    display: flex;
+    gap: var(--spacing-md);
+    opacity: 0.9;
+}
+
+.album-description {
+    color: white;
+    font-size: var(--font-size-md);
+    margin: 0;
+    opacity: 0.8;
 }
 
 .album-modal-close {
@@ -156,37 +190,39 @@
     cursor: pointer;
     padding: var(--spacing-sm);
     transition: transform var(--transition-fast);
+    margin-left: var(--spacing-xl);
 }
 
 .album-modal-close:hover {
     transform: scale(1.1);
 }
 
-.album-photos {
+.album-modal-photos {
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: var(--spacing-md);
     overflow-y: auto;
     padding: var(--spacing-md);
 }
 
-.album-photo {
+.album-modal-photo {
     position: relative;
     border-radius: var(--border-radius-md);
     overflow: hidden;
     aspect-ratio: 1;
     cursor: zoom-in;
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
-.album-photo img {
+.album-modal-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform var(--transition-normal);
 }
 
-.album-photo:hover img {
+.album-modal-photo:hover img {
     transform: scale(1.05);
 }
 
@@ -203,6 +239,11 @@
 
     .album-photos {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .album-modal-subtitle {
+        flex-direction: column;
+        gap: var(--spacing-xs);
     }
 }
 
