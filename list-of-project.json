@@ -1,0 +1,17 @@
+{
+    "virtualPO": [
+        "Project Overview: VirtualPO is a modern project management platform built with a robust tech stack: Next.js 13 with TypeScript and Tailwind CSS for the frontend, offering a responsive and intuitive user interface; Node.js with Express and TypeScript for the backend API, providing secure and scalable server-side operations; and PostgreSQL with Prisma ORM for efficient database management. The platform features GitHub integration for project tracking, real-time collaboration tools, and a containerized deployment setup using Docker and Docker Compose, all supported by comprehensive CI/CD pipelines using GitHub Actions.",
+        "private repository",
+        "assets/projects/virtualpo.png"
+    ],
+    "newyear-resolution": [
+        "365 Goals AI is a sophisticated iOS application built with Swift and SwiftUI, designed to revolutionize New Year's resolution planning and goal tracking. The app leverages modern iOS development technologies including Core Data for local persistence, Firebase for backend services, CoreML for on-device AI features, and the OpenAI API for conversational AI capabilities. What sets this app apart is its dual-mode functionality, offering both personal and couple modes for goal tracking, along with innovative features like AI-powered habit suggestions, gamification elements (including streaks, badges, and challenges), and interactive progress visualization. The project follows a clean, modular architecture with distinct layers for core functionality, features, data management, and UI components. Built for iOS 16.0+ using Swift 5.7+ and Xcode 14.0+, the app combines practical goal-tracking utilities with engaging social features and artificial intelligence to create a comprehensive platform for personal development and habit formation.",
+        "private repository",
+        "assets/projects/newyear-resolution.png"
+    ],
+    "trading-webapp": [
+        "This project is a comprehensive trading web application that combines traditional trading strategies with artificial intelligence. Built using a modern microservices architecture, it consists of a JavaScript-based frontend providing interactive dashboards, backtesting capabilities, and market analysis tools, while the Python backend handles complex computations including asset analysis, cryptocurrency trading, and machine learning-based trading strategies using reinforcement learning. The platform includes an Expert Advisor (EA) trading engine for automated trade execution, user profile management, and real-time notifications via WhatsApp. The infrastructure is containerized using Docker, served through Nginx, and features automated deployments via GitHub Actions, making it a robust, scalable trading platform that bridges traditional trading with AI-driven decision making.",
+        "private repository",
+        "assets/projects/trading-webapp.png"
+    ]
+}

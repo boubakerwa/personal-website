@@ -20,6 +20,42 @@ const blogPosts = [
 
 const projects = [
     {
+        title: 'VirtualPO',
+        description: 'A modern project management platform with GitHub integration, real-time collaboration tools, and comprehensive project tracking capabilities. Built with a robust tech stack including Next.js 13, TypeScript, Node.js, and PostgreSQL.',
+        image: 'assets/projects/virtualpo.png',
+        technologies: ['Next.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'Docker'],
+        status: 'active',
+        isPublic: false,
+        links: {
+            demo: '#',
+            github: '#'
+        }
+    },
+    {
+        title: '365 Goals AI',
+        description: 'An innovative iOS app for New Year\'s resolution planning and goal tracking, featuring AI-powered habit suggestions, gamification, and couple mode. Built with Swift, SwiftUI, CoreML, and OpenAI integration.',
+        image: 'assets/projects/newyear-resolution.png',
+        technologies: ['Swift', 'SwiftUI', 'CoreML', 'Firebase', 'OpenAI'],
+        status: 'active',
+        isPublic: false,
+        links: {
+            demo: '#',
+            github: '#'
+        }
+    },
+    {
+        title: 'AI Trading Platform',
+        description: 'A comprehensive trading web application combining traditional strategies with AI. Features interactive dashboards, backtesting capabilities, and automated trading using reinforcement learning.',
+        image: 'assets/projects/trading-webapp.png',
+        technologies: ['Python', 'JavaScript', 'Docker', 'Machine Learning', 'Microservices'],
+        status: 'completed',
+        isPublic: false,
+        links: {
+            demo: '#',
+            github: '#'
+        }
+    },
+    {
         title: 'Personal Website',
         description: 'A modern, responsive personal website built with modular CSS architecture and vanilla JavaScript. Features include dark mode, interactive gallery, and dynamic content loading.',
         image: 'assets/projects/personal-website.jpg',
@@ -29,30 +65,6 @@ const projects = [
         links: {
             demo: 'https://boubakerwa.github.io/personal-website',
             github: 'https://github.com/boubakerwa/personal-website'
-        }
-    },
-    {
-        title: 'AI-Powered Content Generator',
-        description: 'A machine learning system that generates creative content while maintaining brand consistency.',
-        image: 'assets/projects/ai-content.jpg',
-        technologies: ['Python', 'TensorFlow', 'React'],
-        status: 'active',
-        isPublic: false,
-        links: {
-            demo: 'https://demo.example.com',
-            github: 'https://github.com/example'
-        }
-    },
-    {
-        title: 'Project Management Dashboard',
-        description: 'Interactive dashboard for tracking project metrics and team performance.',
-        image: 'assets/projects/dashboard.jpg',
-        technologies: ['Vue.js', 'Node.js', 'D3.js'],
-        status: 'completed',
-        isPublic: false,
-        links: {
-            demo: 'https://demo.example.com',
-            github: 'https://github.com/example'
         }
     }
 ];
