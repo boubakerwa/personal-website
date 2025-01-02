@@ -46,7 +46,7 @@ This is my personal website that serves as a digital hub for:
 
 1. Clone this repo:
    ```bash
-   git clone https://github.com/wassimboubaker/digital-personal-website.git
+   git clone https://github.com/boubakerwa/personal-website.git
    ```
 
 2. Start a local server:
