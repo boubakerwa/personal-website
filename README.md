@@ -56,6 +56,17 @@ This is my personal website that serves as a digital hub for:
 
 3. Visit `http://localhost:8000` and enjoy! 🎉
 
+## 🌐 Deployment
+
+The website is deployed using GitHub Pages and can be accessed at:
+[https://boubakerwa.github.io/personal-website](https://boubakerwa.github.io/personal-website)
+
+To deploy your own version:
+1. Fork this repository
+2. Go to Settings > Pages
+3. Select the `gh-pages` branch as the source
+4. Your site will be available at `https://[your-username].github.io/personal-website`
+
 ## 🎨 Customization
 
 Feel free to make it your own! The site uses CSS variables for easy theming:
