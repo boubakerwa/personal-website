@@ -2,11 +2,13 @@
 const blogPosts = [
     {
         title: 'The Future of AI in Creative Industries',
-        excerpt: 'Exploring how artificial intelligence is transforming creative workflows and enabling new forms of expression.',
+        excerpt: 'As artificial intelligence continues to evolve, its impact on creative workflows is becoming increasingly significant. From generative art to adaptive music composition, AI is not just automating tasks but enabling entirely new forms of creative expression.',
         image: 'assets/blog/ai-creativity.jpg',
         date: '2024-01-15',
         category: 'AI & Technology',
-        tags: ['AI', 'Creativity', 'Innovation']
+        tags: ['AI', 'Creativity', 'Innovation'],
+        url: 'assets/blog/ai-creativity.md',
+        readTime: '5 min read'
     },
     {
         title: 'Building Scalable Machine Learning Systems',
@@ -14,7 +16,8 @@ const blogPosts = [
         image: 'assets/blog/ml-systems.jpg',
         date: '2024-01-10',
         category: 'Machine Learning',
-        tags: ['ML', 'Architecture', 'Development']
+        tags: ['ML', 'Architecture', 'Development'],
+        readTime: '7 min read'
     }
 ];
 
@@ -26,6 +29,7 @@ const projects = [
         technologies: ['Next.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'Docker'],
         status: 'active',
         isPublic: false,
+        labels: ['Looking for Co-Founder', 'Beta Release'],
         links: {
             demo: '#',
             github: '#'
@@ -38,6 +42,7 @@ const projects = [
         technologies: ['Swift', 'SwiftUI', 'CoreML', 'Firebase', 'OpenAI'],
         status: 'active',
         isPublic: false,
+        labels: ['Looking for Funding', 'Alpha Release'],
         links: {
             demo: '#',
             github: '#'
@@ -50,6 +55,7 @@ const projects = [
         technologies: ['Python', 'JavaScript', 'Docker', 'Machine Learning', 'Microservices'],
         status: 'completed',
         isPublic: false,
+        labels: ['Private Beta', 'Looking for Testers'],
         links: {
             demo: '#',
             github: '#'
@@ -99,8 +105,14 @@ function populateBlogPosts() {
                 <h3 class="blog-card-title">${post.title}</h3>
                 <p class="blog-card-excerpt">${post.excerpt}</p>
                 <div class="blog-card-meta">
-                    <span class="blog-card-date">${new Date(post.date).toLocaleDateString()}</span>
-                    <span class="blog-card-category">${post.category}</span>
+                    <div class="blog-card-info">
+                        <span class="blog-card-date">${new Date(post.date).toLocaleDateString()}</span>
+                        <span class="blog-card-category">${post.category}</span>
+                        <span class="blog-card-read-time">${post.readTime}</span>
+                    </div>
+                    ${post.url ? `
+                        <a href="${post.url}" class="blog-card-link">Read More →</a>
+                    ` : ''}
                 </div>
             </div>
         </article>
@@ -129,7 +141,14 @@ function populateProjects() {
                         GitHub ${project.isPublic ? '🔓' : '🔒'}
                     </a>
                 </div>
-                <span class="project-status status-${project.status}">${project.status}</span>
+                <div class="project-footer">
+                    <span class="project-status status-${project.status}">${project.status}</span>
+                    <div class="project-labels">
+                        ${project.labels ? project.labels.map(label => `
+                            <span class="project-label">${label}</span>
+                        `).join('') : ''}
+                    </div>
+                </div>
             </div>
         </article>
     `).join('');
@@ -171,10 +190,81 @@ function setupNewsletterForm() {
     });
 }
 
+// Email modal functionality
+function setupEmailModal() {
+    const modal = document.getElementById('emailModal');
+    const modalOverlay = modal;
+    const closeBtn = modal.querySelector('.modal-close');
+    const downloadForm = document.getElementById('downloadForm');
+    const downloadButtons = document.querySelectorAll('.download-button');
+    let currentDownloadUrl = '';
+
+    function openModal(downloadUrl) {
+        modalOverlay.classList.add('active');
+        currentDownloadUrl = downloadUrl;
+    }
+
+    function closeModal() {
+        modalOverlay.classList.remove('active');
+        currentDownloadUrl = '';
+        downloadForm.reset();
+    }
+
+    // Close modal when clicking outside
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+            closeModal();
+        }
+    });
+
+    // Close modal with close button
+    closeBtn.addEventListener('click', closeModal);
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    // Handle download form submission
+    downloadForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = downloadForm.querySelector('input[type="email"]').value;
+        
+        try {
+            // Here you would typically send the email to your backend
+            console.log('Email submitted:', email);
+            
+            // Create a temporary link to download the file
+            const link = document.createElement('a');
+            link.href = currentDownloadUrl;
+            link.download = currentDownloadUrl.split('/').pop();
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            closeModal();
+        } catch (error) {
+            console.error('Download failed:', error);
+            alert('Download failed. Please try again.');
+        }
+    });
+
+    // Intercept download button clicks
+    downloadButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal(button.getAttribute('href'));
+        });
+    });
+}
+
 // Initialize all functionality
 document.addEventListener('DOMContentLoaded', () => {
     populateBlogPosts();
     populateProjects();
     populateNews();
     setupNewsletterForm();
+    setupEmailModal();
 });

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/components/ebook.css">
     <link rel="stylesheet" href="css/components/news.css">
     <link rel="stylesheet" href="css/components/contact.css">
+    <link rel="stylesheet" href="css/components/modal.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -270,6 +271,21 @@
             </div>
         </div>
     </footer>
+
+    <!-- Email Modal -->
+    <div class="modal-overlay" id="emailModal">
+        <div class="modal">
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+            <div class="modal-header">
+                <h3 class="modal-title">Get Your Free Ebook</h3>
+                <p class="modal-description">Enter your email to receive the download link</p>
+            </div>
+            <form class="modal-form" id="downloadForm">
+                <input type="email" class="modal-input" placeholder="Your email address" required>
+                <button type="submit" class="modal-submit">Download Now</button>
+            </form>
+        </div>
+    </div>
 
     <script src="js/animations.js"></script>
     <script src="js/main.js"></script>
