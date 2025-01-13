@@ -9,69 +9,40 @@ As artificial intelligence continues to evolve, its impact on creative workflows
 The integration of AI in creative industries has experienced remarkable growth in recent years. In visual arts, tools like DALL-E, Midjourney, and Stable Diffusion have transformed concept art, illustration, and even fine art creation. Music composition has witnessed similar innovation, with platforms like AIVA and OpenAI's MuseNet empowering musicians to experiment with novel melodies, harmonies, and arrangements. Writers now leverage AI tools such as ChatGPT and Sudowrite to brainstorm, draft, and refine their work, resulting in enhanced productivity and sharper narratives. In design, generative tools like Autodesk's Dreamcatcher are reshaping the field, enabling innovative solutions that marry functionality with aesthetic appeal.
 
 ```mermaid
-graph LR
-    AI(("🎨 AI in<br>Creative Industries"))
+graph TD
+    AI[🎨 AI in Creative Industries]
     
-    subgraph Visual Arts
-    VA["🎨 Visual Arts"]
-    VAT["🛠️ Tools:<br>DALL-E<br>Midjourney<br>Stable Diffusion"]
-    VAO["🖼️ Outputs:<br>Concept Art<br>Illustration<br>Fine Art"]
-    end
+    VA[🎨 Visual Arts]
+    MT[🎵 Music]
+    WR[✍️ Writing]
+    DS[🎯 Design]
+    FM[🎬 Film]
+    GM[🎮 Gaming]
     
-    subgraph Music
-    MC["🎵 Music"]
-    MCT["🛠️ Tools:<br>AIVA<br>MuseNet"]
-    MCO["🎼 Outputs:<br>Melodies<br>Harmonies<br>Arrangements"]
-    end
+    AI --> VA & MT & WR & DS & FM & GM
     
-    subgraph Writing
-    WR["✍️ Writing"]
-    WRT["🛠️ Tools:<br>ChatGPT<br>Sudowrite"]
-    WRO["📝 Outputs:<br>Stories<br>Articles<br>Scripts"]
-    end
+    VA --> |Tools| VAT[DALL-E<br>Midjourney<br>Stable Diffusion]
+    VA --> |Creates| VAO[Concept Art<br>Illustration<br>Fine Art]
     
-    subgraph Design
-    DS["🎯 Design"]
-    DST["🛠️ Tools:<br>Dreamcatcher"]
-    DSO["💫 Outputs:<br>Generative Design<br>Functional Solutions"]
-    end
+    MT --> |Tools| MTT[AIVA<br>MuseNet]
+    MT --> |Creates| MTO[Melodies<br>Harmonies<br>Arrangements]
     
-    subgraph Film
-    FM["🎬 Film"]
-    FMT["🛠️ Tools:<br>AI Analytics<br>Storyboard AI"]
-    FMO["🎥 Outputs:<br>Script Analysis<br>Storyboarding<br>Visualization"]
-    end
+    WR --> |Tools| WRT[ChatGPT<br>Sudowrite]
+    WR --> |Creates| WRO[Stories<br>Articles<br>Scripts]
     
-    subgraph Gaming
-    GM["🎮 Gaming"]
-    GMT["🛠️ Tools:<br>AI NPCs<br>Procedural Gen"]
-    GMO["🕹️ Outputs:<br>Dynamic Narratives<br>Adaptive Characters<br>Immersive Worlds"]
-    end
-
-    AI --> VA
-    AI --> MC
-    AI --> WR
-    AI --> DS
-    AI --> FM
-    AI --> GM
+    DS --> |Tools| DST[Dreamcatcher]
+    DS --> |Creates| DSO[Generative Design<br>Functional Solutions]
     
-    VA --> VAT --> VAO
-    MC --> MCT --> MCO
-    WR --> WRT --> WRO
-    DS --> DST --> DSO
-    FM --> FMT --> FMO
-    GM --> GMT --> GMO
-
-    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px
-    classDef primary fill:#e6f3ff,stroke:#2196f3,stroke-width:2px
-    classDef secondary fill:#fff3e6,stroke:#ff9800,stroke-width:2px
-    classDef output fill:#e6ffe6,stroke:#4caf50,stroke-width:2px
+    FM --> |Tools| FMT[AI Analytics<br>Storyboard AI]
+    FM --> |Creates| FMO[Script Analysis<br>Storyboarding<br>Visualization]
     
-    class AI primary
-    class VA,MC,WR,DS,FM,GM secondary
-    class VAO,MCO,WRO,DSO,FMO,GMO output
+    GM --> |Tools| GMT[AI NPCs<br>Procedural Gen]
+    GM --> |Creates| GMO[Dynamic Narratives<br>Adaptive Characters<br>Immersive Worlds]
     
-    linkStyle default stroke:#999,stroke-width:2px
+    style AI fill:#f0f0f0,stroke:#333,stroke-width:2px
+    style VA,MT,WR,DS,FM,GM fill:#e6f3ff,stroke:#333
+    style VAT,MTT,WRT,DST,FMT,GMT fill:#fff3e6,stroke:#333
+    style VAO,MTO,WRO,DSO,FMO,GMO fill:#e6ffe6,stroke:#333
 ```
 
 ---
