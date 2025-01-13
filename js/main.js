@@ -17,7 +17,8 @@ const blogPosts = [
         date: '2024-01-10',
         category: 'Machine Learning',
         tags: ['ML', 'Architecture', 'Development'],
-        readTime: '7 min read'
+        readTime: '7 min read',
+        url: 'assets/blog/swiss-knife-ai.md'
     }
 ];
 
