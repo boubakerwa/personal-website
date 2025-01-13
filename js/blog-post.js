@@ -67,6 +67,13 @@ function updatePageMetadata(markdown) {
 
 // Enhance markdown to HTML conversion
 function markdownToHtml(markdown) {
+    // Preserve existing HTML tags
+    const htmlBlocks = [];
+    markdown = markdown.replace(/<div[\s\S]*?<\/div>/g, (match) => {
+        htmlBlocks.push(match);
+        return `__HTML_BLOCK_${htmlBlocks.length - 1}__`;
+    });
+
     // First, handle headers with proper hierarchy
     let html = markdown
         .replace(/^# (.*$)/gm, '<h1 class="post-title">$1</h1>')
@@ -89,11 +96,14 @@ function markdownToHtml(markdown) {
         html = html.replace(/(<li>.*<\/li>\n)+/g, (match) => `<ol>${match}</ol>`);
     }
 
-    // Handle paragraphs
+    // Handle paragraphs, excluding HTML blocks
     html = html
         .replace(/^\n\n/gm, '</p><p>')
-        .replace(/^(?!<[h|p|u|o|l])/gm, '<p>$&')
+        .replace(/^(?!<[h|p|u|o|l]|__HTML_BLOCK_\d+__)/gm, '<p>$&')
         .replace(/<p>\s*<\/p>/g, '');
+
+    // Restore HTML blocks
+    html = html.replace(/__HTML_BLOCK_(\d+)__/g, (_, index) => htmlBlocks[index]);
 
     return html;
 }
