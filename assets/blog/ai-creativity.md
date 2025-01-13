@@ -1,5 +1,11 @@
 The Future of AI in Creative Industries
 
+<div style="text-align: right; margin-bottom: 1rem;">
+    <span style="background-color: #e3f2fd; color: #1976d2; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.9rem;">
+        Beginner Level
+    </span>
+</div>
+
 As artificial intelligence continues to evolve, its impact on creative workflows is becoming increasingly significant. From generative art to adaptive music composition, AI is not just automating tasks but enabling entirely new forms of creative expression.
 
 

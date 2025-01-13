@@ -8,17 +8,19 @@ const blogPosts = [
         category: 'AI & Technology',
         tags: ['AI', 'Creativity', 'Innovation'],
         url: 'assets/blog/ai-creativity.md',
-        readTime: '5 min read'
+        readTime: '5 min read',
+        difficulty: 'Beginner'
     },
     {
-        title: 'Building Scalable Machine Learning Systems',
+        title: 'Designing & Deploying Next-Generation Machine Learning Systems',
         excerpt: 'Best practices and architectural patterns for developing production-ready ML systems.',
         image: 'assets/blog/ml-systems.jpg',
         date: '2024-01-10',
         category: 'Machine Learning',
         tags: ['ML', 'Architecture', 'Development'],
-        readTime: '7 min read',
-        url: 'assets/blog/swiss-knife-ai.md'
+        readTime: '25 min read',
+        url: 'assets/blog/swiss-knife-ai.md',
+        difficulty: 'Advanced'
     }
 ];
 
@@ -129,6 +131,7 @@ function populateBlogPosts() {
                 <div class="blog-tags">
                     ${post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('')}
                 </div>
+                <span class="blog-difficulty ${post.difficulty.toLowerCase()}">${post.difficulty}</span>
                 <h3 class="blog-card-title">${post.title}</h3>
                 <p class="blog-card-excerpt">${post.excerpt}</p>
                 <div class="blog-card-meta">

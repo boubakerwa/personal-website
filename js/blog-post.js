@@ -28,9 +28,12 @@ async function loadBlogContent() {
             document.title = `${titleMatch[1]} | Wassim Boubaker`;
         }
 
-        // Simple markdown to HTML conversion
+        // Convert markdown to HTML and setup code blocks
         const html = markdownToHtml(markdown);
         postContent.innerHTML = html;
+
+        // Initialize syntax highlighting and copy buttons
+        setupCodeBlocks();
 
         // Update metadata in the page
         updatePageMetadata(markdown);
@@ -74,9 +77,23 @@ function markdownToHtml(markdown) {
         return `__HTML_BLOCK_${htmlBlocks.length - 1}__`;
     });
 
+    // Handle code blocks with language specification
+    markdown = markdown.replace(/```(\w+)\n([\s\S]*?)```/g, (_, lang, code) => {
+        const uniqueId = Math.random().toString(36).substring(7);
+        return `<div class="code-block">
+            <div class="code-header">
+                <span class="code-language">${lang}</span>
+                <button class="copy-code" data-code-id="${uniqueId}">Copy code</button>
+            </div>
+            <pre><code class="language-${lang}" id="${uniqueId}">${code.trim()}</code></pre>
+        </div>`;
+    });
+
     // First, handle headers with proper hierarchy
     let html = markdown
         .replace(/^# (.*$)/gm, '<h1 class="post-title">$1</h1>')
+        .replace(/^\$(\d+)\s*$/gm, '<h2 class="post-heading section-number">$1</h2>')
+        .replace(/^\$(\d+)\s+(.*$)/gm, '<h2 class="post-heading"><span class="section-number">$1</span> $2</h2>')
         .replace(/^## (.*$)/gm, '<h2 class="post-heading">$1</h2>')
         .replace(/^### (.*$)/gm, '<h3 class="post-subheading">$1</h3>')
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
@@ -96,16 +113,39 @@ function markdownToHtml(markdown) {
         html = html.replace(/(<li>.*<\/li>\n)+/g, (match) => `<ol>${match}</ol>`);
     }
 
-    // Handle paragraphs, excluding HTML blocks
+    // Handle paragraphs, excluding HTML blocks and code blocks
     html = html
         .replace(/^\n\n/gm, '</p><p>')
-        .replace(/^(?!<[h|p|u|o|l]|__HTML_BLOCK_\d+__)/gm, '<p>$&')
+        .replace(/^(?!<[h|p|u|o|l|d]|__HTML_BLOCK_\d+__)/gm, '<p>$&')
         .replace(/<p>\s*<\/p>/g, '');
 
     // Restore HTML blocks
     html = html.replace(/__HTML_BLOCK_(\d+)__/g, (_, index) => htmlBlocks[index]);
 
     return html;
+}
+
+// Initialize syntax highlighting and copy buttons
+function setupCodeBlocks() {
+    // Initialize highlight.js
+    hljs.highlightAll();
+
+    // Setup copy buttons
+    document.querySelectorAll('.copy-code').forEach(button => {
+        button.addEventListener('click', () => {
+            const codeId = button.getAttribute('data-code-id');
+            const codeElement = document.getElementById(codeId);
+            const code = codeElement.textContent;
+
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                }, 2000);
+            });
+        });
+    });
 }
 
 function setupLikeButton() {
@@ -192,7 +232,6 @@ function setupTextSelection() {
             }
         }
     });
-
 
     // Don't hide feedback bar when interacting with the form
     feedbackForm.addEventListener('mouseup', (e) => {
