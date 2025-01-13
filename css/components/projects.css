@@ -9,7 +9,7 @@
     padding: 0 var(--spacing-3xl);
 }
 
-/* Featured Project */
+/* Featured Personal Project */
 .featured-project {
     margin-bottom: var(--spacing-3xl);
 }
@@ -184,6 +184,17 @@
 
 .project-link:hover {
     color: var(--primary-color);
+}
+
+.project-link.disabled {
+    color: var(--text-secondary);
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.project-link.disabled:hover {
+    color: var(--text-secondary);
 }
 
 /* Project status badge */

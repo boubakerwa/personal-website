@@ -1,4 +1,9 @@
 {
+    "glowme": [
+        "Glow.Me is a sophisticated full-stack skincare tracking application that combines advanced visualization with AI-powered personalization. Built with React/TypeScript and Vite for a responsive frontend, the application features a modular widget-based dashboard, 3D face visualization, and comprehensive product management. The Node.js/TypeScript backend, powered by Prisma ORM and PostgreSQL, provides a robust foundation for data persistence and API services. Key features include an interactive AI chat system for personalized skincare advice, environmental factors monitoring, customizable avatars for progress tracking, and a gamified achievement system. The application's architecture emphasizes extensibility through widget components, while maintaining security with JWT-based authentication. The solution uniquely combines data-driven skincare recommendations with engaging user experience elements, making skincare tracking both informative and interactive.",
+        "private repository",
+        "assets/projects/glowme.png"
+    ],
     "virtualPO": [
         "Project Overview: VirtualPO is a modern project management platform built with a robust tech stack: Next.js 13 with TypeScript and Tailwind CSS for the frontend, offering a responsive and intuitive user interface; Node.js with Express and TypeScript for the backend API, providing secure and scalable server-side operations; and PostgreSQL with Prisma ORM for efficient database management. The platform features GitHub integration for project tracking, real-time collaboration tools, and a containerized deployment setup using Docker and Docker Compose, all supported by comprehensive CI/CD pipelines using GitHub Actions.",
         "private repository",

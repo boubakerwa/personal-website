@@ -23,26 +23,26 @@ const blogPosts = [
 
 const projects = [
     {
-        title: 'VirtualPO',
-        description: 'A modern project management platform with GitHub integration, real-time collaboration tools, and comprehensive project tracking capabilities. Built with a robust tech stack including Next.js 13, TypeScript, Node.js, and PostgreSQL.',
-        image: 'assets/projects/virtualpo.png',
-        technologies: ['Next.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'Docker'],
+        title: 'Glow.Me',
+        description: 'A sophisticated full-stack skincare tracking application featuring a widget-based dashboard, 3D face visualization, and AI-powered personalization. Built with React/TypeScript frontend and Node.js/TypeScript backend, it offers comprehensive product management, environmental monitoring, and gamified progress tracking.',
+        image: 'assets/projects/glowme.png',
+        technologies: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Prisma', 'Vite', 'Tailwind CSS'],
         status: 'active',
         isPublic: false,
-        labels: ['Looking for Co-Founder', 'Beta Release'],
+        labels: ['Under Development', 'Beta Testing'],
         links: {
             demo: '#',
             github: '#'
         }
     },
     {
-        title: '365 Goals AI',
-        description: 'An innovative iOS app for New Year\'s resolution planning and goal tracking, featuring AI-powered habit suggestions, gamification, and couple mode. Built with Swift, SwiftUI, CoreML, and OpenAI integration.',
-        image: 'assets/projects/newyear-resolution.png',
-        technologies: ['Swift', 'SwiftUI', 'CoreML', 'Firebase', 'OpenAI'],
+        title: 'VirtualPO',
+        description: 'A modern project management platform with GitHub integration, real-time collaboration tools, and comprehensive project tracking capabilities. Built with a robust tech stack including Next.js 13, TypeScript, Node.js, and PostgreSQL.',
+        image: 'assets/projects/virtualpo.png',
+        technologies: ['Next.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'Docker'],
         status: 'active',
         isPublic: false,
-        labels: ['Looking for Funding', 'Alpha Release'],
+        labels: ['Under Development', 'Beta Release'],
         links: {
             demo: '#',
             github: '#'
@@ -55,20 +55,7 @@ const projects = [
         technologies: ['Python', 'JavaScript', 'Docker', 'Machine Learning', 'Microservices'],
         status: 'completed',
         isPublic: false,
-        labels: ['Private Beta', 'Looking for Testers'],
-        links: {
-            demo: '#',
-            github: '#'
-        }
-    },
-    {
-        title: 'PhotoAI Clone',
-        description: 'A sophisticated web application that creates professional AI-generated headshots by learning from multiple user photos. Features real-time progress tracking, camera integration, and drag-and-drop file handling. Uses Replicate\'s API to fine-tune Stability AI SDXL model for personalized headshot generation.',
-        image: 'assets/projects/photoai-clone.png',
-        technologies: ['React', 'TypeScript', 'Express.js', 'TailwindCSS', 'Replicate API', 'Stability AI'],
-        status: 'active',
-        isPublic: false,
-        labels: ['Private Beta', 'Looking for Testers'],
+        labels: ['Private Project', 'Looking for beta Users'],
         links: {
             demo: '#',
             github: '#'
@@ -84,6 +71,32 @@ const projects = [
         links: {
             demo: 'https://boubakerwa.github.io/personal-website',
             github: 'https://github.com/boubakerwa/personal-website'
+        }
+    },
+    {
+        title: 'PhotoAI Clone',
+        description: 'A sophisticated web application that creates professional AI-generated headshots by learning from multiple user photos. Features real-time progress tracking, camera integration, and drag-and-drop file handling. Uses Replicate\'s API to fine-tune Stability AI SDXL model for personalized headshot generation.',
+        image: 'assets/projects/photoai-clone.png',
+        technologies: ['React', 'TypeScript', 'Express.js', 'TailwindCSS', 'Replicate API', 'Stability AI'],
+        status: 'Stale',
+        isPublic: false,
+        labels: ['PoC', 'Solution Architecture'],
+        links: {
+            demo: '#',
+            github: '#'
+        }
+    },
+    {
+        title: '365 Goals AI',
+        description: 'An innovative iOS app for New Year\'s resolution planning and goal tracking, featuring AI-powered habit suggestions, gamification, and couple mode. Built with Swift, SwiftUI, CoreML, and OpenAI integration.',
+        image: 'assets/projects/newyear-resolution.png',
+        technologies: ['Swift', 'SwiftUI', 'CoreML', 'Firebase', 'OpenAI'],
+        status: 'Stale',
+        isPublic: false,
+        labels: ['Under Development', 'Pivoting'],
+        links: {
+            demo: '#',
+            github: '#'
         }
     }
 ];
@@ -141,35 +154,40 @@ function populateProjects() {
     
     if (!projectsGrid || !featuredProject) return;
 
-    // Render featured project (VirtualPO)
-    featuredProject.innerHTML = `
-        <article class="project-card">
-            <img src="${projects[0].image}" alt="${projects[0].title}" class="project-image">
-            <div class="project-content">
-                <h3 class="project-title">${projects[0].title}</h3>
-                <p class="project-description">${projects[0].description}</p>
-                <div class="project-tech">
-                    ${projects[0].technologies.map(tech => `
-                        <span class="tech-tag">${tech}</span>
-                    `).join('')}
-                </div>
-                <div class="project-links">
-                    <a href="${projects[0].links.demo}" class="project-link" target="_blank">Live Demo</a>
-                    <a href="${projects[0].links.github}" class="project-link" target="_blank">
-                        GitHub ${projects[0].isPublic ? '🔓' : '🔒'}
-                    </a>
-                </div>
-                <div class="project-footer">
-                    <span class="project-status status-${projects[0].status}">${projects[0].status}</span>
-                    <div class="project-labels">
-                        ${projects[0].labels ? projects[0].labels.map(label => `
-                            <span class="project-label">${label}</span>
-                        `).join('') : ''}
+    // Find VirtualPO project for featured section
+    const virtualPOProject = projects.find(p => p.title === 'VirtualPO');
+    
+    // Render Featured Project (VirtualPO)
+    if (virtualPOProject) {
+        featuredProject.innerHTML = `
+            <article class="project-card">
+                <img src="${virtualPOProject.image}" alt="${virtualPOProject.title}" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">${virtualPOProject.title}</h3>
+                    <p class="project-description">${virtualPOProject.description}</p>
+                    <div class="project-tech">
+                        ${virtualPOProject.technologies.map(tech => `
+                            <span class="tech-tag">${tech}</span>
+                        `).join('')}
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link request-demo" data-project="${virtualPOProject.title}">Request Live Demo</a>
+                        <a href="${virtualPOProject.isPublic ? virtualPOProject.links.github : '#'}" class="project-link ${virtualPOProject.isPublic ? '' : 'disabled'}" ${virtualPOProject.isPublic ? 'target="_blank"' : ''}>
+                            GitHub ${virtualPOProject.isPublic ? '🔓' : '🔒'}
+                        </a>
+                    </div>
+                    <div class="project-footer">
+                        <span class="project-status status-${virtualPOProject.status}">${virtualPOProject.status}</span>
+                        <div class="project-labels">
+                            ${virtualPOProject.labels ? virtualPOProject.labels.map(label => `
+                                <span class="project-label">${label}</span>
+                            `).join('') : ''}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </article>
-    `;
+            </article>
+        `;
+    }
 
     // Render remaining projects in carousel (excluding VirtualPO)
     projectsGrid.innerHTML = projects.filter(project => project.title !== 'VirtualPO').map(project => `
@@ -184,8 +202,8 @@ function populateProjects() {
                     `).join('')}
                 </div>
                 <div class="project-links">
-                    <a href="${project.links.demo}" class="project-link" target="_blank">Live Demo</a>
-                    <a href="${project.links.github}" class="project-link" target="_blank">
+                    <a href="#" class="project-link request-demo" data-project="${project.title}">Request Live Demo</a>
+                    <a href="${project.isPublic ? project.links.github : '#'}" class="project-link ${project.isPublic ? '' : 'disabled'}" ${project.isPublic ? 'target="_blank"' : ''}>
                         GitHub ${project.isPublic ? '🔓' : '🔒'}
                     </a>
                 </div>
@@ -338,6 +356,73 @@ function setupEmailModal() {
     });
 }
 
+// Demo request modal functionality
+function setupDemoRequestModal() {
+    const modal = document.getElementById('demoRequestModal');
+    const modalOverlay = modal;
+    const closeBtn = modal.querySelector('.modal-close');
+    const form = document.getElementById('demoRequestForm');
+    let currentProject = '';
+
+    function openModal(projectTitle) {
+        modalOverlay.classList.add('active');
+        currentProject = projectTitle;
+    }
+
+    function closeModal() {
+        modalOverlay.classList.remove('active');
+        currentProject = '';
+        form.reset();
+    }
+
+    // Close modal when clicking outside
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+            closeModal();
+        }
+    });
+
+    // Close modal with close button
+    closeBtn.addEventListener('click', closeModal);
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    // Handle form submission
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = {
+            project: currentProject,
+            email: form.querySelector('input[type="email"]').value,
+            role: form.querySelector('select').value,
+            intention: form.querySelector('textarea').value
+        };
+        
+        try {
+            // Here you would typically send the data to your backend
+            console.log('Demo request submitted:', formData);
+            closeModal();
+            alert('Thanks for your interest! I will reach out to you soon.');
+        } catch (error) {
+            console.error('Demo request failed:', error);
+            alert('Request failed. Please try again.');
+        }
+    });
+
+    // Add click handlers for demo request buttons
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('request-demo')) {
+            e.preventDefault();
+            const projectTitle = e.target.dataset.project;
+            openModal(projectTitle);
+        }
+    });
+}
+
 // Initialize all functionality
 document.addEventListener('DOMContentLoaded', () => {
     populateBlogPosts();
@@ -345,4 +430,5 @@ document.addEventListener('DOMContentLoaded', () => {
     populateNews();
     setupNewsletterForm();
     setupEmailModal();
+    setupDemoRequestModal();
 });

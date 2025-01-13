@@ -34,9 +34,24 @@
 
     <main>
         <section id="hero" class="hero">
+            <div class="hero-shapes">
+                <div class="hero-shape"></div>
+                <div class="hero-shape"></div>
+                <div class="hero-shape"></div>
+            </div>
             <div class="hero-content">
-                <h1>Exploring the Intersection of Technology & Creativity</h1>
+                <div class="hero-subtitle">Building the Future with AI</div>
+                <h1>Architecting Intelligent Systems at Scale</h1>
                 <p class="tagline">ML Solutions Architect • Tech Lead • Cloud Innovation</p>
+                <div class="hero-tech-stack">
+                    <span class="tech-item">AWS</span>
+                    <span class="tech-item">ML/AI</span>
+                    <span class="tech-item">Python</span>
+                    <span class="tech-item">Cloud Native</span>
+                </div>
+            </div>
+            <div class="hero-background">
+                <div class="code-rain"></div>
             </div>
         </section>
 
@@ -47,21 +62,11 @@
             </div>
         </section>
 
-        <section id="blog" class="blog">
-            <div class="container">
-                <h2>Latest Blog Posts</h2>
-                <div class="blog-grid">
-                    <!-- Blog entries will be dynamically populated -->
-                </div>
-            </div>
-        </section>
-
-
         <section id="projects" class="projects">
             <div class="container">
-                <h2>Featured Projects</h2>
+                <h2>Featured Personal Projects</h2>
                 <div class="featured-project">
-                    <!-- Featured project will be dynamically populated -->
+                    <!-- Featured Personal Project will be dynamically populated -->
                 </div>
                 <div class="projects-container">
                     <button class="carousel-nav carousel-prev" aria-label="Previous project">←</button>
@@ -69,6 +74,15 @@
                         <!-- Project cards will be dynamically populated -->
                     </div>
                     <button class="carousel-nav carousel-next" aria-label="Next project">→</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="blog">
+            <div class="container">
+                <h2>Latest Blog Posts</h2>
+                <div class="blog-grid">
+                    <!-- Blog entries will be dynamically populated -->
                 </div>
             </div>
         </section>
@@ -295,6 +309,35 @@
     <div class="album-modal">
         <div class="album-modal-content">
             <!-- Album content will be dynamically populated -->
+        </div>
+    </div>
+
+    <!-- Demo Request Modal -->
+    <div class="modal-overlay" id="demoRequestModal">
+        <div class="modal">
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+            <div class="modal-header">
+                <h3 class="modal-title">Request Live Demo</h3>
+                <p class="modal-description">Please provide your details and I'll reach out to schedule a demo.</p>
+            </div>
+            <form class="modal-form" id="demoRequestForm">
+                <div class="form-group">
+                    <input type="email" class="modal-input" placeholder="Your email address" required>
+                </div>
+                <div class="form-group">
+                    <select class="modal-input" required>
+                        <option value="">Select your role</option>
+                        <option value="developer">Developer</option>
+                        <option value="product_manager">Product Manager</option>
+                        <option value="business_owner">Business Owner</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea class="modal-input" placeholder="What interests you about this project? (optional)" rows="3"></textarea>
+                </div>
+                <button type="submit" class="modal-submit">Submit Request</button>
+            </form>
         </div>
     </div>
 
