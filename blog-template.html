@@ -8,23 +8,16 @@
     <link rel="stylesheet" href="css/components/header.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/components/blog-post.css">
-    <!-- Markdown-it for rendering markdown -->
-    <script src="https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js"></script>
-    <!-- Mermaid for diagrams -->
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>
         mermaid.initialize({ 
-            startOnLoad: false,
+            startOnLoad: true,
             theme: 'default',
             securityLevel: 'loose',
             flowchart: {
                 useMaxWidth: true,
                 htmlLabels: true,
-                curve: 'natural',
-                padding: 15,
-                nodeSpacing: 100,
-                rankSpacing: 100,
-                diagramPadding: 20
+                curve: 'basis'
             }
         });
     </script>
@@ -107,6 +100,5 @@
     </div>
 
     <script src="js/blog-post.js"></script>
-    <script src="js/creative-ai-viz.js"></script>
 </body>
 </html>
