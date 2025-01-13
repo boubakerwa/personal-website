@@ -1,0 +1,55 @@
+/* Code block overrides - loaded after highlight.js */
+.hljs {
+    padding: 0 !important;
+    background: transparent !important;
+    font-family: var(--font-mono) !important;
+    font-size: 13px !important;
+    line-height: 1.4 !important;
+    white-space: pre !important;
+}
+
+.code-block {
+    margin: 6px 0 !important;
+    background: #f6f8fa !important;
+    border-radius: 4px !important;
+    overflow: hidden !important;
+}
+
+.code-block pre {
+    margin: 0 !important;
+    padding: 6px 10px !important;
+    padding-bottom: 0 !important;
+    background: transparent !important;
+}
+
+.code-header {
+    padding: 3px 10px !important;
+    background: #f0f2f4 !important;
+    border-bottom: 1px solid #e1e4e8 !important;
+    height: 26px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.code-language {
+    font-size: 11px !important;
+    color: #6a737d !important;
+    text-transform: uppercase !important;
+}
+
+.copy-code {
+    opacity: 0.6;
+    font-size: 11px !important;
+    padding: 3px 8px !important;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    .code-block {
+        background: #1a1a1a !important;
+    }
+    .code-header {
+        background: #252525 !important;
+        border-bottom-color: #333 !important;
+    }
+}

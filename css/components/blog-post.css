@@ -92,54 +92,123 @@ h2.section-number {
 
 /* Code blocks */
 .code-block {
-    margin: var(--spacing-lg) 0;
-    background: var(--background-secondary);
-    border-radius: var(--border-radius-lg);
+    margin: 8px 0;
+    background: #f6f8fa;
+    border-radius: var(--border-radius-sm);
     overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Reduce spacing between code blocks and paragraphs */
+.post-body p + .code-block,
+.code-block + p {
+    margin-top: 4px;
 }
 
 .code-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--spacing-sm) var(--spacing-md);
-    background: rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 4px var(--spacing-sm);
+    background: #f0f2f4;
+    border-bottom: 1px solid #e1e4e8;
 }
 
 .code-language {
     font-family: var(--font-mono);
-    font-size: var(--font-size-sm);
-    color: var(--text-light);
+    font-size: 11px;
+    color: #6a737d;
     text-transform: uppercase;
+    letter-spacing: 0.3px;
 }
 
 .copy-code {
+    opacity: 0.6;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--text-light);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--border-radius-sm);
-    font-size: var(--font-size-sm);
+    border: none;
+    color: #586069;
+    padding: 2px var(--spacing-xs);
+    font-size: 11px;
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: opacity var(--transition-fast);
 }
 
 .copy-code:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
+    opacity: 1;
 }
 
+/* Override highlight.js defaults */
 .code-block pre {
-    margin: 0;
-    padding: var(--spacing-md);
+    margin: 0 !important;
+    padding: 4px var(--spacing-xs) !important;
     overflow-x: auto;
 }
 
-.code-block code {
-    font-family: var(--font-mono);
-    font-size: var(--font-size-sm);
-    line-height: 1.6;
+.code-block pre code.hljs {
+    font-family: var(--font-mono) !important;
+    font-size: 12px !important;
+    line-height: 1.15 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    tab-size: 2;
+    white-space: pre !important;
+}
+
+/* Ensure no extra spacing in code blocks */
+.code-block pre code.hljs * {
+    white-space: pre !important;
+}
+
+/* Tighter spacing for code blocks */
+.code-block {
+    margin: 4px 0 !important;
+}
+
+/* Remove extra spacing from highlight.js elements */
+.hljs-comment, .hljs-quote,
+.hljs-keyword, .hljs-selector-tag,
+.hljs-subst, .hljs-number,
+.hljs-literal, .hljs-variable,
+.hljs-template-variable, .hljs-tag .hljs-attr,
+.hljs-string, .hljs-doctag,
+.hljs-title, .hljs-section,
+.hljs-selector-id, .hljs-type,
+.hljs-class .hljs-title,
+.hljs-symbol, .hljs-bullet,
+.hljs-built_in, .hljs-builtin-name,
+.hljs-addition, .hljs-deletion,
+.hljs-meta, .hljs-meta-string {
+    line-height: 1.2 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Dark mode code blocks */
+@media (prefers-color-scheme: dark) {
+    .code-block {
+        background: #1a1a1a;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .code-header {
+        background: #252525;
+        border-bottom: 1px solid #333;
+    }
+
+    .code-language {
+        color: #8b949e;
+    }
+
+    .copy-code {
+        border-color: #404040;
+        color: #8b949e;
+    }
+
+    .copy-code:hover {
+        background: #2d2d2d;
+        border-color: #505050;
+        color: #c9d1d9;
+    }
 }
 
 /* Post actions */

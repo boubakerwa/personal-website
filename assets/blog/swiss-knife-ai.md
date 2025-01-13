@@ -1,6 +1,6 @@
 Below is a deeply expanded guide on designing and deploying next-generation, production-grade ML systems—think of it like a “Swiss Army Knife” for advanced practitioners. This guide focuses on practical yet sophisticated patterns to help you navigate the many moving parts of a modern ML architecture, from data ingestion to drift detection and everything in between.
 
----
+
 
 # **Designing & Deploying Next-Generation Machine Learning Systems**  
 *A Comprehensive “Swiss-Army Knife” for Building Advanced, Production-Grade ML Solutions*
@@ -16,7 +16,7 @@ The journey from proof-of-concept to a scalable, enterprise-grade machine learni
 
 If you’re aiming to build or refine a production ML system that delivers real-world value, read on!
 
----
+
 
 ## **1. Data Ingestion & Real-Time Streaming**
 
@@ -52,7 +52,7 @@ Centralizing feature definitions ensures consistency across training and inferen
 
 > **Key Takeaway**: Ingestion is not just about collecting data—it’s about building a flexible, reliable pipeline that can feed both offline batch jobs and real-time inference engines.
 
----
+
 
 ## **2. Distributed Training & Orchestration**
 
@@ -82,7 +82,7 @@ spec:
 
 > **Key Takeaway**: Automating your training pipeline ensures you can iterate quickly, experiment safely, and scale out to meet the demands of modern deep learning workloads.
 
----
+
 
 ## **3. Model Deployment & Serving**
 
@@ -112,7 +112,7 @@ def get_prediction(input_data):
 
 > **Key Takeaway**: Modularizing your inference setup with microservices and flexible routing ensures smoother updates and minimal downtime during model upgrades.
 
----
+
 
 ## **4. Observability & Monitoring**
 
@@ -142,7 +142,7 @@ if __name__ == "__main__":
 
 > **Key Takeaway**: Observability is the backbone of production ML—monitor metrics, logs, and traces to quickly diagnose issues and maintain high availability.
 
----
+
 
 ## **5. Data & Concept Drift Management**
 
@@ -168,7 +168,7 @@ def detect_drift(new_data, baseline_data, alpha=0.05):
 
 > **Key Takeaway**: Drift is inevitable. Automating the detection and response process ensures minimal performance degradation and keeps your systems adaptive.
 
----
+
 
 ## **6. Queues, Caching & Resilience**
 
@@ -198,7 +198,7 @@ def predict_with_cache(input_data):
 
 > **Key Takeaway**: Combining queues for asynchronous workflows and caching for high-demand data can significantly improve the overall throughput and resilience of your ML system.
 
----
+
 
 ## **7. Security, Governance & Compliance**
 
@@ -212,55 +212,17 @@ def predict_with_cache(input_data):
 
 > **Key Takeaway**: Even the best model can’t fix compliance violations or security breaches. Bake governance and security into every layer from day one.
 
----
+
 
 ## **8. Putting It All Together: A Reference Architecture**
 
 Below is a high-level example of how these components can fit together in a production setting:
 
-```
-                ┌─────────────────────────────────────────────┐
-                │                 Data Sources                │
-                └─────────────────────────────────────────────┘
-                              |           ^
-                              v           |
-         ┌─────────────────────────────────────────────┐
-         │       Stream Ingestion (Kafka / Pulsar)     │
-         └─────────────────────────────────────────────┘
-               |             ^
-               v             |
-         ┌─────────────────────────────────────────────┐
-         │      Real-Time Feature Store (Feast)       │
-         └─────────────────────────────────────────────┘
-               |              ^
-               v              |
-         ┌─────────────────────────────────────────────┐
-         │       Distributed Training Pipeline        │
-         │ (Kubeflow, Airflow, MLflow, HPC, etc.)     │
-         └─────────────────────────────────────────────┘
-               |                   ^
-               v                   |
-         ┌─────────────────────────────────────────────┐
-         │       Model Registry (MLflow, etc.)        │
-         └─────────────────────────────────────────────┘
-               |                  ^
-               v                  |
-         ┌─────────────────────────────────────────────┐
-         │         Model Serving (Triton, etc.)       │
-         └─────────────────────────────────────────────┘
-          ^                   |
-          |  ┌───────── Redis/Memcached ─────┐
-          |                  |
-          v                  |
-     ┌─────────────────────────────────────────────┐
-     │               End Users / APIs            │
-     └─────────────────────────────────────────────┘
+<div style="text-align: center; margin: 2rem 0;">
+    <img src="../assets/blog/mermaid-diagram-ai-dev.png" alt="ML System Architecture Diagram" style="max-width: 100%; height: auto;">
+</div>
 
-                    [Monitoring + Drift Detection]
-                    [Security + Governance Layer]
-```
 
----
 
 ## **Closing Thoughts**
 

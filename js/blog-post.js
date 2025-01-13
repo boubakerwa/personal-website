@@ -85,7 +85,7 @@ function markdownToHtml(markdown) {
                 <span class="code-language">${lang}</span>
                 <button class="copy-code" data-code-id="${uniqueId}">Copy code</button>
             </div>
-            <pre><code class="language-${lang}" id="${uniqueId}">${code.trim()}</code></pre>
+            <pre><code class="hljs language-${lang}" id="${uniqueId}">${code.trim()}</code></pre>
         </div>`;
     });
 

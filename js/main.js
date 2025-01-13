@@ -14,7 +14,7 @@ const blogPosts = [
     {
         title: 'Designing & Deploying Next-Generation Machine Learning Systems',
         excerpt: 'Best practices and architectural patterns for developing production-ready ML systems.',
-        image: 'assets/blog/ml-systems.jpg',
+        image: 'assets/blog/ai-dev.webp',
         date: '2024-01-10',
         category: 'Machine Learning',
         tags: ['ML', 'Architecture', 'Development'],
@@ -106,16 +106,16 @@ const projects = [
 
 const newsItems = [
     {
-        title: 'Speaking at Tech Conference 2024',
-        content: 'Excited to announce that I will be speaking about AI and creativity at Tech Conference 2024.',
-        date: '2024-02-01',
-        category: 'Events'
+        title: 'Personal Website Release',
+        content: 'Launched my new personal website showcasing projects, blog posts, and professional background.',
+        date: new Date().toISOString().split('T')[0],
+        category: 'Release'
     },
     {
-        title: 'New Machine Learning Course Launch',
-        content: 'Launching a comprehensive course on building production ML systems.',
-        date: '2024-01-20',
-        category: 'Education'
+        title: 'Promotion to Lead Technical Consultant',
+        content: 'Promoted to Lead Technical Consultant role at NTT DATA SE.',
+        date: '2024-07-01',
+        category: 'Career'
     }
 ];
 
@@ -279,10 +279,13 @@ function setupNewsletterForm() {
         const email = form.querySelector('input').value;
         
         try {
-            // Replace with actual API call
-            console.log('Newsletter signup:', email);
-            form.querySelector('input').value = '';
-            alert('Thanks for subscribing!');
+            const success = await submitFormToSheet(email, 'newsletter');
+            if (success) {
+                form.querySelector('input').value = '';
+                alert('Thanks for subscribing!');
+            } else {
+                throw new Error('Form submission failed');
+            }
         } catch (error) {
             console.error('Newsletter signup failed:', error);
             alert('Signup failed. Please try again.');
@@ -333,18 +336,22 @@ function setupEmailModal() {
         const email = downloadForm.querySelector('input[type="email"]').value;
         
         try {
-            // Here you would typically send the email to your backend
-            console.log('Email submitted:', email);
+            const ebookTitle = currentDownloadUrl.split('/').pop();
+            const success = await submitFormToSheet(email, 'ebook_download', ebookTitle);
             
-            // Create a temporary link to download the file
-            const link = document.createElement('a');
-            link.href = currentDownloadUrl;
-            link.download = currentDownloadUrl.split('/').pop();
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            closeModal();
+            if (success) {
+                // Create a temporary link to download the file
+                const link = document.createElement('a');
+                link.href = currentDownloadUrl;
+                link.download = ebookTitle;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                closeModal();
+            } else {
+                throw new Error('Form submission failed');
+            }
         } catch (error) {
             console.error('Download failed:', error);
             alert('Download failed. Please try again.');
